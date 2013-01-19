@@ -1,0 +1,15 @@
+{
+  "name": "collection",
+  "repo": "apily/collection",
+  "version": "0.0.1",
+  "description": "Collection component",
+  "keywords": ["client-side", "MVC", "collection"],
+  "scripts": ["index.js"],
+  "dependencies": {
+    "component/emitter": "*"
+  },
+  "development": {
+    "component/assert": "*"
+  },
+  "license": "MIT"
+}
