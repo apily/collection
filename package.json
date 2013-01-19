@@ -1,0 +1,26 @@
+{  
+  "name": "collection",
+  "description": "client-side MVC Collection component",
+  "version": "0.0.1",
+  "maintainers": [
+    {
+      "name": "Enrico Marino",
+      "url": "onirame.com"
+    },
+    {
+      "name": "Federico Spini",
+      "url": "federicospini.com"
+    }
+  ],
+  "homepage": "https://github.com/apily/collection",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/apily/collection.git"
+  },
+  "main": "index.js",
+  "engines": {
+    "node": "*"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
