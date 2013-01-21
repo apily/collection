@@ -236,7 +236,7 @@ Collection.prototype.reject = function(fn){
  * @api public
  */
 
-List.prototype.find = function(fn){
+Collection.prototype.find = function(fn){
   var items = this.models;
   var len = items.length;
   var i;
@@ -256,7 +256,7 @@ List.prototype.find = function(fn){
 };
 
 /*
- * findLast
+ * find_last
  * Return the last value when `fn(val, i)` is truthy,
  * otherwise return `undefined`.
  *
@@ -269,7 +269,7 @@ List.prototype.find = function(fn){
  * @api public
  */
 
-List.prototype.findLast = function(fn){
+Collection.prototype.find_last = function(fn){
   var items = this.models;
   var len = items.length;
   var i;
