@@ -432,3 +432,32 @@ Collection.prototype.indexOf = function(obj){
   return this.models.indexOf(obj)
 };
 
+
+/*
+ * has
+ * Check if this list contains `obj`.
+ *
+ * @param {Mixed} obj
+ * @return {Boolean}
+ * @api public
+ */
+
+List.prototype.has =
+List.prototype.contains = function(obj){
+  var items = this.models;
+  var len = items.length;
+  var i;
+  var item;
+  var test;
+
+  for (i = 0; i < len; i += 1) {
+    item = items[i];
+    test = item === obj;
+    if (test) {
+      return true;
+    }
+  }
+
+  return false;
+};
+
