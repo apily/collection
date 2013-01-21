@@ -386,3 +386,35 @@ Collection.prototype.any = function(fn){
 
   return false;
 };
+
+/* 
+ * count
+ * Count the number of times `fn(val, i)` returns true.
+ *
+ *    var n = pets.count(function(pet){
+ *      return pet.species == 'ferret'
+ *    })
+ *
+ * @param {Function} fn
+ * @return {Number}
+ * @api public
+ */
+
+Collection.prototype.count = function(fn){
+  var items = this.models;
+  var len = items.length;
+  var i;
+  var item;
+  var test;
+  var n = 0;
+
+  for (i = 0; i < len; i += 1) {
+    item = items[i];
+    test = fn(item, i);
+    if (test) {
+      n += 1;
+    }
+  }
+
+  return n;
+};
