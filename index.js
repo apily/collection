@@ -141,8 +141,8 @@ Collection.prototype.map = function(fn){
  * @api public
  */
 
-List.prototype.select = 
-List.prototype.where = function(fn){
+Collection.prototype.select = 
+Collection.prototype.where = function(fn){
   var items = this.models;
   var len = items.length;
   var i;
@@ -171,7 +171,7 @@ List.prototype.where = function(fn){
  * @api public
  */
 
-List.prototype.unique = function(){
+Collection.prototype.unique = function(){
   var items = this.models;
   var len = items.length;
   var i;
@@ -188,4 +188,36 @@ List.prototype.unique = function(){
   }
 
   return new Collection(result);
+};
+
+/*
+ * reject
+ * Reject all values that return a truthy value of `fn(val, i)`.
+ *
+ *    users.reject(function(user){
+ *      return user.age < 20
+ *    })
+ *
+ * @param {Function} fn iterator
+ * @return {Collection} the filtered collection
+ * @api public
+ */
+
+Collection.prototype.reject = function(fn){
+  var items = this.models;
+  var len = items.length;
+  var i;
+  var item;
+  var test;
+  var result = [];
+
+  for (i = 0; i < len; i += 1) {
+    item = items[i];
+    test = fn(item, i);
+    if (!test) {
+      result.push(item);
+    }
+  }
+
+  return new List(result);
 };
