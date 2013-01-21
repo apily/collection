@@ -48,3 +48,22 @@ Collection.prototype.constructor = Collection;
  */
 
 Collection.prototype.model = Model;
+
+/*
+ * add
+ * Add an item to the list,  
+ * emit 'add' event.
+ * 
+ * @param {Mixed} item item to add
+ * @return {List} this for chaining
+ * @api public
+ */
+
+Collection.prototype.add = function (model) {
+  if (!(model instanceof Model)) {
+    model = new Model(model);
+  }
+  this.models.push(model);
+  this.emit('add', model);
+  return this;
+};
