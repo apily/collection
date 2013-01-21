@@ -105,13 +105,25 @@ Collection.prototype.remove = function (model) {
  */
 
 Collection.prototype.each = function(fn){
-  var models = this.models;
-  var len = models.length;
-  var i;
-
-  for (i = 0; i < len; i +=1) {
-    fn(models[i], i);
-  }
-  
+  this.models.forEach(fn);
   return this;
+};
+
+/*
+ * map
+ * Map each return value from `fn(val, i)`.
+ *
+ *    users.map(function(user){
+ *      return user.name.first
+ *    })
+ *
+ * @param {Function} fn iterator
+ * @return {Collection} the mapped list
+ * @api public
+ */
+
+Collection.prototype.map = function(fn){
+  var models = this.models.map(fn);
+  var result = new Collection(models);
+  return result;
 };
