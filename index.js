@@ -418,3 +418,17 @@ Collection.prototype.count = function(fn){
 
   return n;
 };
+
+/*
+ * indexOf
+ * Determine the index of `obj` or return `-1`.
+ *
+ * @param {Mixed} obj
+ * @return {Number}
+ * @api public
+ */
+
+Collection.prototype.indexOf = function(obj){
+  return this.models.indexOf(obj)
+};
+
