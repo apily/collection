@@ -127,3 +127,36 @@ Collection.prototype.map = function(fn){
   var result = new Collection(models);
   return result;
 };
+
+/*
+ * select
+ * Select all values that return a truthy value of `fn(val, i)`.
+ *
+ *    users.select(function(user){
+ *      return user.age > 20
+ *    })
+ *
+ * @param {Function} fn iterator
+ * @return {Collection} the collection of selected items
+ * @api public
+ */
+
+List.prototype.select = 
+List.prototype.where = function(fn){
+  var items = this.models;
+  var len = items.length;
+  var i;
+  var item;
+  var test;
+  var result = [];
+
+  for (var i = 0; i < len; ++i) {
+    item = items[i];
+    test = fn(item, i);
+    if (test) {
+      result.push(item);
+    }
+  }
+
+  return new Collection(result);
+};
