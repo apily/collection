@@ -18,6 +18,7 @@ module.exports = Collection;
  */
 
 var Emitter = require('emitter');
+var Model = require('model');
 
 /*
  * Collection
@@ -42,3 +43,8 @@ function Collection(models) {
 Collection.prototype = Emitter.prototype;
 Collection.prototype.constructor = Collection;
 
+/*
+ * Model constructor
+ */
+
+Collection.prototype.model = Model;

@@ -6,6 +6,7 @@
   "keywords": ["client-side", "MVC", "collection"],
   "scripts": ["index.js"],
   "dependencies": {
+    "apily/model": "*",
     "component/emitter": "*"
   },
   "development": {
