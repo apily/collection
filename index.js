@@ -51,10 +51,10 @@ Collection.prototype.model = Model;
 
 /*
  * add
- * Add an item to the list,  
+ * Add `model` to this collection,  
  * emit 'add' event.
  * 
- * @param {Mixed} item item to add
+ * @param {Mixed} model model to add
  * @return {List} this for chaining
  * @api public
  */
@@ -65,5 +65,28 @@ Collection.prototype.add = function (model) {
   }
   this.models.push(model);
   this.emit('add', model);
+  return this;
+};
+
+/*
+ * remove
+ * Remove `model` from the collection,  
+ * if the model exists, emit 'remove' event.
+ * 
+ * @param {Mixed} item item to add
+ * @return {List} this for chaining
+ * @api public
+ */
+
+Collection.prototype.remove = function (model) {
+  var models = this.models;
+  var index = models.indexOf(model);
+  var present = index !== -1;
+
+  if (present) {
+    models.splice(index, 1);
+    this.emit('remove', model);
+  }
+
   return this;
 };
