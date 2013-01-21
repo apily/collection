@@ -254,3 +254,35 @@ List.prototype.find = function(fn){
 
   return;
 };
+
+/*
+ * findLast
+ * Return the last value when `fn(val, i)` is truthy,
+ * otherwise return `undefined`.
+ *
+ *    users.findLast(function(user){
+ *      return user.role == 'admin'
+ *    })
+ *
+ * @param {Function} fn
+ * @return {Mixed}
+ * @api public
+ */
+
+List.prototype.findLast = function(fn){
+  var items = this.models;
+  var len = items.length;
+  var i;
+  var item;
+  var test;
+
+  for (i = len - 1; i >= 0; i -= 1) {
+    item = items[i];
+    test = fn(item, i);
+    if (test) {
+      return item;
+    }
+  }
+
+  return;
+};
