@@ -219,5 +219,38 @@ Collection.prototype.reject = function(fn){
     }
   }
 
-  return new List(result);
+  return new Collection(result);
+};
+
+/*
+ * find
+ * Return the first value when `fn(val, i)` is truthy,
+ * otherwise return `undefined`.
+ *
+ *    users.find(function(user){
+ *      return user.role == 'admin'
+ *    })
+ *
+ * @param {Function} fn iterator
+ * @return {Mixed}
+ * @api public
+ */
+
+List.prototype.find = function(fn){
+  var items = this.models;
+  var len = items.length;
+  var i;
+  var item;
+  var test;
+  var result = [];
+
+  for (i = 0; i < len; i += 1) {
+    item = items[i];
+    test = fn(item, i);
+    if (test) {
+      return item;
+    }
+  }
+
+  return;
 };
