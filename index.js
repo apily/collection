@@ -286,3 +286,39 @@ Collection.prototype.find_last = function(fn){
 
   return;
 };
+
+/*
+ * every
+ * Assert that all invocations of `fn(val, i)` are truthy.
+ *
+ * For example ensuring that all pets are ferrets:
+ *
+ *    pets.all(function(pet){
+ *      return pet.species == 'ferret'
+ *    })
+ *
+ *    users.all('admin')
+ *
+ * @param {Function|String} fn
+ * @return {Boolean}
+ * @api public
+ */
+
+Collection.prototype.all =
+Collection.prototype.every = function(fn){
+  var items = this.models;
+  var len = items.length;
+  var i;
+  var item;
+  var test;
+
+  for (i = 0; i < len; i += 1) {
+    item = items[i];
+    test = fn(item, i);
+    if (!test) {
+      return false;
+    }
+  }
+
+  return true;
+};
