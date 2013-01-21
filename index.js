@@ -90,3 +90,28 @@ Collection.prototype.remove = function (model) {
 
   return this;
 };
+
+/*
+ * each
+ * Iterate each value and invoke `fn(val, i)`.
+ *
+ *    users.each(function(user, i){
+ *
+ *    })
+ *
+ * @param {Function} fn iterator
+ * @return {Collection} this for chaining
+ * @api public
+ */
+
+Collection.prototype.each = function(fn){
+  var models = this.models;
+  var len = models.length;
+  var i;
+
+  for (i = 0; i < len; i +=1) {
+    fn(models[i], i);
+  }
+  
+  return this;
+};
