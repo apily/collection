@@ -1,4 +1,3 @@
-
 /*
  * collection
  * Collection component
@@ -442,8 +441,8 @@ Collection.prototype.indexOf = function(obj){
  * @api public
  */
 
-List.prototype.has =
-List.prototype.contains = function(obj){
+Collection.prototype.has =
+Collection.prototype.contains = function(obj){
   var items = this.models;
   var len = items.length;
   var i;
