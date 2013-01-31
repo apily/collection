@@ -39,7 +39,7 @@ function Collection(models) {
  * Inheritance
  */
 
-Collection.prototype = Emitter.prototype;
+Collection.prototype = Object.create(Emitter.prototype);
 Collection.prototype.constructor = Collection;
 
 /*
