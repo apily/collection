@@ -62,6 +62,7 @@ Collection.prototype.add = function (model) {
   if (!(model instanceof Model)) {
     model = new Model(model);
   }
+  model.collection = this;
   this.models.push(model);
   this.emit('add', model);
   return this;
@@ -83,6 +84,7 @@ Collection.prototype.remove = function (model) {
   var present = index !== -1;
 
   if (present) {
+    model.collection = null;
     models.splice(index, 1);
     this.emit('remove', model);
   }
