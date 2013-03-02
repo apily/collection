@@ -4,7 +4,7 @@
  *
  * @copyright 2012 Enrico Marino and Federico Spini
  * @license MIT
- */ 
+ */
 
 /*
  * Expose `Collection`
@@ -50,9 +50,9 @@ Collection.prototype.model = Model;
 
 /*
  * add
- * Add `model` to this collection,  
+ * Add `model` to this collection,
  * emit 'add' event.
- * 
+ *
  * @param {Mixed} model model to add
  * @return {List} this for chaining
  * @api public
@@ -60,7 +60,7 @@ Collection.prototype.model = Model;
 
 Collection.prototype.add = function (model) {
   if (!(model instanceof Model)) {
-    model = new Model(model);
+    model = new this.model(model);
   }
   model.collection = this;
   this.models.push(model);
@@ -70,9 +70,9 @@ Collection.prototype.add = function (model) {
 
 /*
  * remove
- * Remove `model` from the collection,  
+ * Remove `model` from the collection,
  * if the model exists, emit 'remove' event.
- * 
+ *
  * @param {Mixed} item item to add
  * @return {List} this for chaining
  * @api public
@@ -142,7 +142,7 @@ Collection.prototype.map = function(fn){
  * @api public
  */
 
-Collection.prototype.select = 
+Collection.prototype.select =
 Collection.prototype.where = function(fn){
   var items = this.models;
   var len = items.length;
@@ -388,7 +388,7 @@ Collection.prototype.any = function(fn){
   return false;
 };
 
-/* 
+/*
  * count
  * Count the number of times `fn(val, i)` returns true.
  *
