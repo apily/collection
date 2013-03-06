@@ -444,7 +444,7 @@ Collection.prototype.indexOf = function(obj){
  */
 
 Collection.prototype.has =
-Collection.prototype.contains = function(obj){
+Collection.prototype.contains = function(obj) {
   var items = this.models;
   var len = items.length;
   var i;
@@ -462,3 +462,22 @@ Collection.prototype.contains = function(obj){
   return false;
 };
 
+/*
+ * pluck
+ * Extract a list of property values.
+ *
+ * @param {String} sproperty
+ * @return {Array}
+ * @api public
+ */
+
+Collection.prototype.pluck = function(property){
+  var items = this.models;
+  var plucked = [];
+
+  items.forEach(function (item) {
+    plucked.push(item.get(property));
+  });
+
+  return plucked;
+};
