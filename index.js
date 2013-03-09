@@ -69,6 +69,24 @@ Collection.prototype.add = function (model) {
 };
 
 /*
+ * add_all
+ * Add all the `models` to this collection,
+ * emit 'add_all' event.
+ *
+ * @param {Array} model model to add
+ * @return {List} this for chaining
+ * @api public
+ */
+
+Collection.prototype.add_all = function (models) {
+  models.forEach(function (model) {
+    this.add(model)
+  }, this);
+  this.emit('add_all');
+  return this;
+};
+
+/*
  * remove
  * Remove `model` from the collection,
  * if the model exists, emit 'remove' event.
