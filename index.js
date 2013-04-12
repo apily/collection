@@ -73,7 +73,7 @@ Collection.prototype.add = function (model) {
  * Add all the `models` to this collection,
  * emit 'add_all' event.
  *
- * @param {Array} model model to add
+ * @param {Array} models models to add
  * @return {List} this for chaining
  * @api public
  */
@@ -82,7 +82,7 @@ Collection.prototype.add_all = function (models) {
   models.forEach(function (model) {
     this.add(model)
   }, this);
-  this.emit('add_all');
+  this.emit('add_all', models);
   return this;
 };
 
@@ -107,6 +107,24 @@ Collection.prototype.remove = function (model) {
     this.emit('remove', model);
   }
 
+  return this;
+};
+
+/*
+ * remove_all
+ * Remove all the `models` from this collection,
+ * emit 'remove_all' event.
+ *
+ * @param {Array} models models to remove 
+ * @return {List} this for chaining
+ * @api public
+ */
+
+Collection.prototype.remove_all = function (models) {
+  models.forEach(function (model) {
+    this.remove(model)
+  }, this);
+  this.emit('remove_all', models);
   return this;
 };
 
