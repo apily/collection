@@ -115,12 +115,13 @@ Collection.prototype.remove = function (model) {
  * Remove all the `models` from this collection,
  * emit 'remove_all' event.
  *
- * @param {Array} models models to remove 
+ * @param {Array} [models|undefined] models to remove 
  * @return {List} this for chaining
  * @api public
  */
 
 Collection.prototype.remove_all = function (models) {
+  models = models || this.models.slice();
   models.forEach(function (model) {
     this.remove(model)
   }, this);
