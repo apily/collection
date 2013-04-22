@@ -32,7 +32,10 @@ function Collection(models) {
     return new Collection(models);
   }
   Emitter.call(this);
-  this.models = models || [];
+  this.models = [];
+  if (models) {
+    this.add_all(models);
+  }
 }
 
 /*
