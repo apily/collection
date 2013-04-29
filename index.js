@@ -133,6 +133,19 @@ Collection.prototype.remove_all = function (models) {
 };
 
 /*
+ * at
+ * Get the `i`-th model
+ *
+ * @param {Number} i index of the model to get
+ * @return {Mixed} the `i`-th model
+ * @api public
+ */
+
+Collection.prototype.at = function (i) {
+  return this.models[i];
+};
+
+/*
  * each
  * Iterate each value and invoke `fn(val, i)`.
  *
