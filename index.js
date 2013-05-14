@@ -31,6 +31,7 @@ function Collection (options) {
     return new Collection(options);
   }
   Emitter.call(this);
+  var options = options || {};
   var models = options.models || [];
   this.add_all(models);
 }
