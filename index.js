@@ -20,22 +20,19 @@ var Emitter = require('emitter');
 var Model = require('model');
 
 /*
- * Collection
- * Create a collection.
- *
- * @param {Array} models models
- * @return {Collection} a collection
+ * @costructor Collection
+ * @description Create a collection.
+ * @param {Object} options options
+ *   @param {Array} [options.models] models
  */
 
-function Collection(models) {
+function Collection (options) {
   if (!(this instanceof Collection)) {
-    return new Collection(models);
+    return new Collection(options);
   }
   Emitter.call(this);
-  this.models = [];
-  if (models) {
-    this.add_all(models);
-  }
+  var models = options.models || [];
+  this.add_all(models);
 }
 
 /*
@@ -158,7 +155,7 @@ Collection.prototype.at = function (i) {
  * @api public
  */
 
-Collection.prototype.each = function(fn){
+Collection.prototype.each = function (fn) {
   this.models.forEach(fn);
   return this;
 };
@@ -176,10 +173,8 @@ Collection.prototype.each = function(fn){
  * @api public
  */
 
-Collection.prototype.map = function(fn){
-  var models = this.models.map(fn);
-  var result = new Collection(models);
-  return result;
+Collection.prototype.map = function (fn) {
+  return this.models.map(fn);
 };
 
 /*
@@ -196,7 +191,7 @@ Collection.prototype.map = function(fn){
  */
 
 Collection.prototype.select =
-Collection.prototype.where = function(fn){
+Collection.prototype.where = function (fn) {
   var items = this.models;
   var len = items.length;
   var i;
@@ -212,7 +207,7 @@ Collection.prototype.where = function(fn){
     }
   }
 
-  return new Collection(result);
+  return result;
 };
 
 /*
@@ -225,7 +220,7 @@ Collection.prototype.where = function(fn){
  * @api public
  */
 
-Collection.prototype.unique = function(){
+Collection.prototype.unique = function () {
   var items = this.models;
   var len = items.length;
   var i;
@@ -241,7 +236,7 @@ Collection.prototype.unique = function(){
     }
   }
 
-  return new Collection(result);
+  return result;
 };
 
 /*
@@ -257,7 +252,7 @@ Collection.prototype.unique = function(){
  * @api public
  */
 
-Collection.prototype.reject = function(fn){
+Collection.prototype.reject = function (fn) {
   var items = this.models;
   var len = items.length;
   var i;
@@ -273,7 +268,7 @@ Collection.prototype.reject = function(fn){
     }
   }
 
-  return new Collection(result);
+  return result;
 };
 
 /*
@@ -290,7 +285,7 @@ Collection.prototype.reject = function(fn){
  * @api public
  */
 
-Collection.prototype.find = function(fn){
+Collection.prototype.find = function (fn) {
   var items = this.models;
   var len = items.length;
   var i;
@@ -323,7 +318,7 @@ Collection.prototype.find = function(fn){
  * @api public
  */
 
-Collection.prototype.find_last = function(fn){
+Collection.prototype.find_last = function (fn) {
   var items = this.models;
   var len = items.length;
   var i;
@@ -359,7 +354,7 @@ Collection.prototype.find_last = function(fn){
  */
 
 Collection.prototype.all =
-Collection.prototype.every = function(fn){
+Collection.prototype.every = function (fn) {
   var items = this.models;
   var len = items.length;
   var i;
@@ -390,7 +385,7 @@ Collection.prototype.every = function(fn){
  * @api public
  */
 
-Collection.prototype.none = function(fn){
+Collection.prototype.none = function (fn) {
   var items = this.models;
   var len = items.length;
   var i;
@@ -423,7 +418,7 @@ Collection.prototype.none = function(fn){
  * @api public
  */
 
-Collection.prototype.any = function(fn){
+Collection.prototype.any = function (fn) {
   var items = this.models;
   var len = items.length;
   var i;
@@ -454,7 +449,7 @@ Collection.prototype.any = function(fn){
  * @api public
  */
 
-Collection.prototype.count = function(fn){
+Collection.prototype.count = function (fn) {
   var items = this.models;
   var len = items.length;
   var i;
@@ -482,7 +477,8 @@ Collection.prototype.count = function(fn){
  * @api public
  */
 
-Collection.prototype.indexOf = function(obj){
+Collection.prototype.index
+Collection.prototype.indexOf = function (obj) {
   return this.models.indexOf(obj)
 };
 
@@ -497,7 +493,7 @@ Collection.prototype.indexOf = function(obj){
  */
 
 Collection.prototype.has =
-Collection.prototype.contains = function(obj) {
+Collection.prototype.contains = function (obj) {
   var items = this.models;
   var len = items.length;
   var i;
@@ -524,13 +520,8 @@ Collection.prototype.contains = function(obj) {
  * @api public
  */
 
-Collection.prototype.pluck = function(property){
-  var items = this.models;
-  var plucked = [];
-
-  items.forEach(function (item) {
-    plucked.push(item.get(property));
+Collection.prototype.pluck = function (property) {
+  return this.models.map(function (model) {
+    return model.get(property);
   });
-
-  return plucked;
 };
