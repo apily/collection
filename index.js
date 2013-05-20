@@ -12,6 +12,13 @@
 
 module.exports = Collection;
 
+/**
+ * Utils
+ */
+
+var object = {};
+var toString = object.toString;
+
 /*
  * Module dependencies
  */
@@ -61,6 +68,9 @@ Collection.prototype.model = Model;
  */
 
 Collection.prototype.add = function (model) {
+  if ('[object Array]' === toString.call(model)) {
+    return this.add_all(model);
+  }
   if (!(model instanceof Model)) {
     model = new this.model(model);
   }
