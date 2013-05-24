@@ -74,6 +74,7 @@ Collection.prototype.add = function (model, options) {
     return this.add_all(model, options);
   }
   if (!(model instanceof Model)) {
+    options.collection = this;
     model = new this.model(model, options);
   }
   model.collection = this;
