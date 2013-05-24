@@ -33,13 +33,14 @@ var Model = require('model');
  *   @param {Array} [options.models] models
  */
 
-function Collection (options) {
+function Collection (models, options) {
   if (!(this instanceof Collection)) {
-    return new Collection(options);
+    return new Collection(models, options);
   }
   Emitter.call(this);
-  var options = options || {};
-  var models = options.models || [];
+  models = models || [];
+  options = options || {};
+  
   this.models = [];
   this.add_all(models);
 }
@@ -63,16 +64,17 @@ Collection.prototype.model = Model;
  * emit 'add' event.
  *
  * @param {Mixed} model model to add
+ * @param {Object} [options] options
  * @return {List} this for chaining
  * @api public
  */
 
-Collection.prototype.add = function (model) {
+Collection.prototype.add = function (model, options) {
   if ('[object Array]' === toString.call(model)) {
-    return this.add_all(model);
+    return this.add_all(model, options);
   }
   if (!(model instanceof Model)) {
-    model = new this.model(model);
+    model = new this.model(model, options);
   }
   model.collection = this;
   this.models.push(model);
@@ -90,9 +92,9 @@ Collection.prototype.add = function (model) {
  * @api public
  */
 
-Collection.prototype.add_all = function (models) {
+Collection.prototype.add_all = function (models, options) {
   models.forEach(function (model) {
-    this.add(model)
+    this.add(model, options)
   }, this);
   this.emit('add_all', models);
   return this;
