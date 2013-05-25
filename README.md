@@ -148,7 +148,7 @@ Get the index of `model`.
 
 Check if this collection contains `model`.
 
-### Collection#pluck(String:property) {
+### Collection#pluck(String:property)
 
 Extract a list of property values.
 
