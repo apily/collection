@@ -88,7 +88,7 @@ module.exports = function () {
     if ('[object Array]' === toString.call(model)) {
       return this.add_all(model, options);
     }
-    if (!(model instanceof Model)) {
+    if (!(model instanceof this.model)) {
       options.collection = this;
       model = new this.model(model, options);
     }
