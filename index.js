@@ -45,6 +45,20 @@ module.exports = function () {
     this.add_all(models);
   }
   
+  /**
+   * use
+   * use plugin
+   * 
+   * @param {Function} fn plugin
+   * @return {Collection} this for chaining
+   * @api public
+   */
+  
+  Collection.use = function (fn) {
+    fn(this);
+    return this;
+  };
+  
   /*
    * Inheritance
    */
