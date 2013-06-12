@@ -70,6 +70,7 @@ Collection.prototype.model = Model;
  */
 
 Collection.prototype.add = function (model, options) {
+  options = options || {}
   if ('[object Array]' === toString.call(model)) {
     return this.add_all(model, options);
   }
