@@ -7,6 +7,13 @@
  */
 
 /*
+ * Component dependencies
+ */
+
+var Emitter = require('emitter');
+var Model = require('model')();
+
+/*
  * Expose component
  */
 
@@ -18,14 +25,7 @@ module.exports = function () {
   
   var object = {};
   var toString = object.toString;
-  
-  /*
-   * Module dependencies
-   */
-  
-  var Emitter = require('emitter');
-  var Model = require('model')();
-  
+    
   /*
    * @costructor Collection
    * @description Create a collection.
