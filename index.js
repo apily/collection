@@ -90,7 +90,7 @@ module.exports = function () {
     }
     if (!(model instanceof Model)) {
       options.collection = this;
-      model = new this.constructor.model(model, options);
+      model = new this.model(model, options);
     }
     model.collection = this;
     this.models.push(model);
