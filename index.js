@@ -60,18 +60,18 @@ module.exports = function () {
   };
   
   /*
+   * Model constructor
+   */
+  
+  Collection.model = Model;
+
+  /*
    * Inheritance
    */
   
   Collection.prototype = Object.create(Emitter.prototype);
   Collection.prototype.constructor = Collection;
-  
-  /*
-   * Model constructor
-   */
-  
-  Collection.prototype.model = Model;
-  
+    
   /*
    * add
    * Add `model` to this collection,
@@ -90,7 +90,7 @@ module.exports = function () {
     }
     if (!(model instanceof Model)) {
       options.collection = this;
-      model = new this.model(model, options);
+      model = new this.constructor.model(model, options);
     }
     model.collection = this;
     this.models.push(model);
