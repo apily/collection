@@ -60,18 +60,18 @@ module.exports = function () {
   };
   
   /*
-   * Model constructor
-   */
-  
-  Collection.model = Model;
-
-  /*
    * Inheritance
    */
   
   Collection.prototype = Object.create(Emitter.prototype);
   Collection.prototype.constructor = Collection;
-    
+  
+  /*
+   * Model constructor
+   */
+  
+  Collection.prototype.model = Model;
+
   /*
    * add
    * Add `model` to this collection,
